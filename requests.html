@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skill Swap Platform - Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: #f4f7fc;
+      color: #333;
+    }
+
+    .main-header {
+      background: linear-gradient(90deg, #0055ff, #00bbff);
+      color: white;
+      padding: 1.2rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .logo-title {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .app-title {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .home-btn {
+      color: white;
+      text-decoration: none;
+      padding: 0.4rem 1rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      font-weight: 500;
+    }
+
+    .home-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .profile-photo {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+    .action-row {
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-toggle {
+      background: #0055ff;
+      color: white;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 105%;
+      left: 0;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 0.5rem 0;
+      display: none;
+      z-index: 10;
+    }
+
+    .dropdown.open .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu li {
+      padding: 0.5rem 1.2rem;
+      cursor: pointer;
+    }
+
+    .dropdown-menu li:hover {
+      background: #f0f0f0;
+    }
+
+    .dropdown-menu li.active {
+      background: #e6f0ff;
+      font-weight: 600;
+    }
+
+    .search-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .search-input-wrapper {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 0.4rem 1rem;
+      background: #fff;
+    }
+
+    .search-icon {
+      margin-right: 0.5rem;
+      color: #888;
+    }
+
+    .search-input {
+      border: none;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .search-btn {
+      background: #00bbff;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .search-btn:hover {
+      background: #008dd1;
+    }
+
+    .profile-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 2rem;
+      justify-content: center;
+    }
+
+    .profile-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      width: 300px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .profile-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+    }
+
+    .profile-image {
+      width: 100%;
+      height: 200px;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      object-fit: cover;
+    }
+
+    .profile-details {
+      padding: 1rem;
+    }
+
+    .text-block h3 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+
+    .text-block p {
+      margin: 0.4rem 0;
+      font-size: 0.95rem;
+    }
+
+    .status-row {
+      margin-top: 1rem;
+      text-align: right;
+    }
+
+    .status-badge {
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    .status-badge.pending {
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .status-badge.accepted {
+      background: #d4edda;
+      color: #155724;
+    }
+
+    .status-badge.rejected {
+      background: #f8d7da;
+      color: #721c24;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #f1f1f1;
+      color: #555;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo-title">
+      <span class="app-title">Skill Swap Platform</span>
+    </div>
+    <div class="header-right">
+      <a href="index.html" class="home-btn">Home</a>
+      <a href="profile.html">
+        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Profile" class="profile-photo">
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="action-row">
+  <div class="button-group">
+    <div class="dropdown" id="filterDropdown">
+      <button class="dropdown-toggle" id="dropdownSelected">
+        <i class="fas fa-filter"></i>
+        <span class="dropdown-label"><strong>All</strong></span>
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <ul class="dropdown-menu">
+        <li data-value="All" class="active"><i class="fas fa-globe"></i> All</li>
+        <li data-value="Pending"><i class="fas fa-clock"></i> Pending</li>
+        <li data-value="Accepted"><i class="fas fa-check-circle"></i> Accepted</li>
+        <li data-value="Rejected"><i class="fas fa-times-circle"></i> Rejected</li>
+      </ul>
+    </div>
+
+    <div class="search-wrapper">
+      <div class="search-input-wrapper">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" class="search-input" placeholder="Search skills, users...">
+      </div>
+      <button class="search-btn">Search</button>
+    </div>
+  </div>
+</div>
+
+<main id="profile-list" class="profile-list"></main>
+
+<footer>
+  <p>Page 1 of 1</p>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const profileList = document.getElementById("profile-list");
+  const dropdown = document.getElementById("filterDropdown");
+  const dropdownToggle = document.getElementById("dropdownSelected");
+  const dropdownItems = dropdown.querySelectorAll('.dropdown-menu li');
+  const dropdownLabel = dropdown.querySelector('.dropdown-label strong');
+  const searchInput = document.querySelector('.search-input');
+  const searchButton = document.querySelector('.search-btn');
+
+  const users = [
+    {
+      name: "Mark Demo",
+      image: "https://randomuser.me/api/portraits/men/32.jpg",
+      offered: "Photoshop",
+      wanted: "Web Design",
+      status: "Pending"
+    },
+    {
+      name: "Jane Smith",
+      image: "https://randomuser.me/api/portraits/women/44.jpg",
+      offered: "Drawing",
+      wanted: "Digital Art",
+      status: "Accepted"
+    },
+    {
+      name: "Alex John",
+      image: "https://randomuser.me/api/portraits/men/90.jpg",
+      offered: "Video Editing",
+      wanted: "Animation",
+      status: "Rejected"
+    }
+  ];
+
+  let selectedStatus = "All";
+  let searchQuery = "";
+
+  function renderProfiles() {
+    profileList.innerHTML = "";
+
+    const filteredUsers = users.filter(user => {
+      const statusMatch = selectedStatus === "All" || user.status === selectedStatus;
+      const searchMatch =
+        user.name.toLowerCase().includes(searchQuery) ||
+        user.offered.toLowerCase().includes(searchQuery) ||
+        user.wanted.toLowerCase().includes(searchQuery);
+      return statusMatch && searchMatch;
+    });
+
+    if (filteredUsers.length === 0) {
+      profileList.innerHTML = "<p>No users found.</p>";
+      return;
+    }
+
+    filteredUsers.forEach(user => {
+      const card = document.createElement("div");
+      card.className = "profile-card";
+      card.onclick = () => {
+        localStorage.setItem("selectedUser", JSON.stringify(user));
+        window.location.href = "user.html";
+      };
+
+      card.innerHTML = `
+        <img src="${user.image}" alt="${user.name}" class="profile-image">
+        <div class="profile-details">
+          <div class="text-block">
+            <h3>${user.name}</h3>
+            <p><i class="fas fa-handshake"></i> <strong>Offered:</strong> ${user.offered}</p>
+            <p><i class="fas fa-bullseye"></i> <strong>Wanted:</strong> ${user.wanted}</p>
+          </div>
+          <div class="status-row">
+            <span class="status-badge ${user.status.toLowerCase()}">${user.status}</span>
+          </div>
+        </div>
+      `;
+      profileList.appendChild(card);
+    });
+  }
+
+  dropdownToggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+    dropdown.classList.toggle("open");
+  });
+
+  document.addEventListener("click", () => {
+    dropdown.classList.remove("open");
+  });
+
+  dropdownItems.forEach(item => {
+    item.addEventListener("click", (e) => {
+      e.stopPropagation();
+      selectedStatus = item.getAttribute("data-value");
+      dropdownLabel.textContent = selectedStatus;
+
+      dropdownItems.forEach(i => i.classList.remove("active"));
+      item.classList.add("active");
+
+      dropdown.classList.remove("open");
+      renderProfiles();
+    });
+  });
+
+  searchButton.addEventListener("click", () => {
+    searchQuery = searchInput.value.trim().toLowerCase();
+    renderProfiles();
+  });
+
+  searchInput.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+      searchQuery = searchInput.value.trim().toLowerCase();
+      renderProfiles();
+    }
+  });
+
+  renderProfiles();
+});
+</script>
+
+</body>
+</html>

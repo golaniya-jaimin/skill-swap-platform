@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile - Skill Swap</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f2f6ff, #e3e9f9);
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(to right, #2e3a59, #4b6cb7);
+      color: #fff;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .header-left {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .header-center a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    .header-center a:hover {
+      color: #f0c040;
+    }
+
+    .header-right img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      object-fit: cover;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+      transition: transform 0.3s;
+    }
+
+    .header-right img:hover {
+      transform: scale(1.1);
+    }
+
+    .profile-section {
+      max-width: 650px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(15px);
+      margin: 50px auto;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease-in-out;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .profile-section img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto 20px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .profile-section h2 {
+      text-align: center;
+      font-weight: 600;
+      font-size: 24px;
+      color: #2e3a59;
+    }
+
+    .info-block {
+      margin: 25px 0;
+      text-align: center;
+    }
+
+    .info-block p {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .rating {
+      background: linear-gradient(135deg, #f7d794, #f0c040);
+      padding: 10px 20px;
+      display: inline-block;
+      border-radius: 30px;
+      font-weight: 500;
+      color: #2e3a59;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 15px;
+    }
+
+    .request-button {
+      background: linear-gradient(to right, #2e3a59, #4b6cb7);
+      color: #fff;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      display: block;
+      margin: 30px auto 0;
+      transition: background 0.3s, transform 0.3s;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .request-button:hover {
+      background: linear-gradient(to right, #1d253f, #3a53a4);
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .header-center {
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">Skill Swap Platform</div>
+  <div class="header-center">
+    <a href="requests.html">Swap Request</a>
+    <a href="index.html">Home</a>
+  </div>
+<!-- inside header -->
+<div class="header-right">
+  <a href="profile.html">
+        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Profile" class="profile-photo">
+      </a>
+</div>
+
+</header>
+
+<section class="profile-section" id="user-profile">
+  <!-- Content loaded by JavaScript -->
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const user = JSON.parse(localStorage.getItem("selectedUser"));
+    if (!user) {
+      document.getElementById("user-profile").innerHTML = "<p style='text-align:center;'>User not found.</p>";
+      return;
+    }
+
+    document.getElementById("user-profile").innerHTML = `
+      <img src="${user.image}" alt="${user.name}">
+      <h2>${user.name}</h2>
+      <div class="info-block">
+        <p><strong>Skills Offered:</strong> ${user.offered}</p>
+        <p><strong>Skills Wanted:</strong> ${user.wanted}</p>
+        <div class="rating">⭐ Rating: ${user.rating}</div>
+      </div>
+      <!-- This will navigate to the request.html page -->
+<button class="request-button" onclick="window.location.href='request.html'">
+  <i class="fas fa-paper-plane"></i> Send Swap Request
+</button>
+
+    `;
+  });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Swap Request Form</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .form-container {
+      display: block;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 500px;
+      margin: 40px auto;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .dropdown {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      resize: vertical;
+      margin-top: 10px;
+    }
+
+    .submit-btn {
+      display: block;
+      margin: 30px auto 0;
+      padding: 12px 30px;
+      background-color: #27ae60;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #219150;
+    }
+
+    .dropdown-icon {
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Swap Request Form -->
+<div class="form-container" id="swapForm">
+  <h2>Send Skill Swap Request</h2>
+
+  <label for="yourSkill"><i class="fas fa-hand-holding-heart dropdown-icon"></i> Choose one of your offered skills</label>
+  <select class="dropdown" id="yourSkill">
+    <option value="">-- Select Skill --</option>
+    <option value="Photoshop">Photoshop</option>
+    <option value="Web Design">Web Design</option>
+    <option value="Video Editing">Video Editing</option>
+  </select>
+
+  <label for="theirSkill"><i class="fas fa-bullseye dropdown-icon"></i> Choose one of their wanted skills</label>
+  <select class="dropdown" id="theirSkill">
+    <option value="">-- Select Skill --</option>
+    <option value="Logo Design">Logo Design</option>
+    <option value="UX Research">UX Research</option>
+    <option value="SEO">SEO</option>
+  </select>
+
+  <label for="message"><i class="fas fa-envelope-open-text dropdown-icon"></i> Message</label>
+  <textarea id="message" placeholder="Write your message here..."></textarea>
+
+  <button class="submit-btn">Submit Request</button>
+</div>
+
+<!-- JavaScript -->
+<script>
+  document.querySelector('.submit-btn').addEventListener('click', function () {
+    const yourSkill = document.getElementById('yourSkill').value.trim();
+    const theirSkill = document.getElementById('theirSkill').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if (!yourSkill || !theirSkill || !message) {
+      alert("Please fill out all fields before submitting.");
+      return;
+    }
+
+    alert("Your swap request has been submitted successfully!");
+
+    // Redirect to index.html after 1.5 seconds
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 1500);
+  });
+</script>
+
+</body>
+</html>
